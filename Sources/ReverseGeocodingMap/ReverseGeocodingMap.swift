@@ -4,11 +4,24 @@ import HGCircularSlider
 import CoreLocation
 import LocationExtension
 import Contacts
+import UIViewExtension
+import LabelExtension
+import FontExtension
+import ActionButton
+
+public protocol ReverseGeocodingMapDelegate: class {
+    func geocodingComplete(_: Result<CLPlacemark, Error>)
+    func search()
+    func didChoose(_ placemark: CLPlacemark)
+}
 
 public class ReverseGeocodingMap: UIViewController {
-    public static func create() -> ReverseGeocodingMap {
-        return UIStoryboard(name: "Map", bundle: .module).instantiateInitialViewController() as! ReverseGeocodingMap
+    public static func create(delegate: ReverseGeocodingMapDelegate) -> ReverseGeocodingMap {
+        let ctrl = UIStoryboard(name: "Map", bundle: .module).instantiateInitialViewController() as! ReverseGeocodingMap
+        ctrl.delegate = delegate
+        return ctrl
     }
+    weak var delegate: ReverseGeocodingMapDelegate!
     
     @IBOutlet weak var map: MKMapView!  {
         didSet {
@@ -34,9 +47,29 @@ public class ReverseGeocodingMap: UIViewController {
             countdown.isUserInteractionEnabled = false
         }
     }
+    @IBOutlet weak var card: UIView!
 
+    @IBOutlet weak var chooseDestinationLabel: UILabel!  {
+        didSet {
+            chooseDestinationLabel.set(text: NSLocalizedString("Choose destination", bundle: .module, comment: "Choose destination"), for: FontType.title, textColor: #colorLiteral(red: 0.1234303191, green: 0.1703599989, blue: 0.2791167498, alpha: 1))
+        }
+    }
 
-    public var geocodingCompletion:  ((Result<CLPlacemark, Error>) -> Void)?
+    @IBOutlet weak var validDestinationLabel: UILabel! {
+        didSet {
+            validDestinationLabel.set(text: NSLocalizedString("Enter valid destination", bundle: .module, comment: "Choose destination"), for: FontType.footnote, textColor: #colorLiteral(red: 0.1234303191, green: 0.1703599989, blue: 0.2791167498, alpha: 1))
+        }
+    }
+
+    @IBOutlet weak var validDestinationButton: ActionButton!  {
+        didSet {
+            validDestinationButton.actionButtonType = .primary
+            validDestinationButton.layer.cornerRadius = 5.0
+            validDestinationButton.setTitle(NSLocalizedString("set destination", bundle: .module, comment: "set destination").uppercased(), for: .normal)
+            validDestinationButton.shape = .rounded(value: 5.0)
+        }
+    }
+
     public var tintColor: UIColor = #colorLiteral(red: 0.8602173328, green: 0, blue: 0.1972838044, alpha: 1)  {
         didSet {
             guard locatioButton != nil else { return }
@@ -57,29 +90,61 @@ public class ReverseGeocodingMap: UIViewController {
         }
     }
     public var countdownValue: CGFloat = 2
+    public var showSearchButton: Bool = true
     
     @IBAction func centerOnUser() {
         map.setCenter(map.userLocation.coordinate, animated: true)
     }
     
-    let locationManager = CLLocationManager()
+    @IBAction func validatePlacemark() {
+        
+    }
     
+    let locationManager = CLLocationManager()
     fileprivate func checkAuthorization() {
         locationManager.delegate = self
         switch CLLocationManager.authorizationStatus() {
         case .notDetermined: locationManager.requestWhenInUseAuthorization()
-        case .authorizedAlways, .authorizedWhenInUse: map.showsUserLocation = true
+        case .authorizedAlways, .authorizedWhenInUse: locatioButton.isHidden = false
         default: locatioButton.isHidden = true
         }
+        map.showsUserLocation = false
+    }
+    
+    public override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        card.round(corners: [.topLeft, .topRight], radius: 20.0)
+        card.addShadow(roundCorners: false, shadowOffset: CGSize(width: -5, height: 0))
     }
     
     public override func viewDidLoad() {
         super.viewDidLoad()
         checkAuthorization()
+        handleSearch()
+        customize()
+        
         countdown.isHidden = true
         locatioButton.tintColor = tintColor
         centerImage.tintColor = tintColor
         countdown.trackFillColor = tintColor
+    }
+    
+    func customize() {
+        ActionButton.primaryColor = #colorLiteral(red: 1, green: 0.192286253, blue: 0.2298730612, alpha: 1)
+        ActionButton.loadingColor = #colorLiteral(red: 1, green: 0.192286253, blue: 0.2298730612, alpha: 1).withAlphaComponent(0.7)
+        ActionButton.separatorColor = #colorLiteral(red: 0.6176490188, green: 0.6521512866, blue: 0.7114837766, alpha: 1)
+        ActionButton.mainTextsColor = #colorLiteral(red: 0.1234303191, green: 0.1703599989, blue: 0.2791167498, alpha: 1)
+    }
+    
+    func handleSearch() {
+        if showSearchButton {
+            let button = UIBarButtonItem(image: UIImage(named: "search", in: .module, compatibleWith: nil), style: .plain, target: self, action: #selector(search))
+            navigationItem.rightBarButtonItem = button
+        }
+    }
+    
+    @objc func search() {
+        delegate.search()
     }
     
     var countdownTimer: Timer?
@@ -90,11 +155,18 @@ public class ReverseGeocodingMap: UIViewController {
                 if self?.searchComplete ?? true == false {
                     self?.searchLoader.isHidden = false
                 }
+                guard let placemark = self?.placemark else { return }
                 self?.countdown.isHidden = true
                 self?.centerImage.isHidden = true
-                if let placemark = self?.placemark {
+                if self?.showCalloutOnCompletion ?? false == true {
                     self?.showAnnotation(placemark)
                 }
+                if placemark.name?.isEmpty ?? true == false {
+                    
+                } else {
+                    
+                }
+                
                 return
             }
             self?.countdown.endPointValue += 0.01 / (self?.countdownValue ?? 1)
@@ -127,29 +199,34 @@ public class ReverseGeocodingMap: UIViewController {
     let geocoder = CLGeocoder()
     var searchComplete: Bool = false  {
         didSet {
-            if searchComplete == true {
-                searchLoader.isHidden = true
-            }
+            stopTimer()
         }
     }
 
-    var placemark: CLPlacemark?
+    var placemark: CLPlacemark?  {
+        didSet {
+            validDestinationButton.isEnabled = placemark?.formattedAddress?.isEmpty ?? true == false
+            guard let place = placemark,
+                  place.formattedAddress?.isEmpty ?? true == false  else {
+                validDestinationLabel.set(text: NSLocalizedString("Enter valid destination", bundle: .module, comment: "Choose destination"), for: FontType.footnote, textColor: #colorLiteral(red: 0.1234303191, green: 0.1703599989, blue: 0.2791167498, alpha: 1))
+                return
+            }
+            validDestinationLabel.set(text: place.formattedAddress, for: FontType.footnote, textColor: #colorLiteral(red: 0.1234303191, green: 0.1703599989, blue: 0.2791167498, alpha: 1))
+        }
+    }
+
     func searchAddressForCurrentLocation() {
         geocoder.reverseGeocodeLocation(map.centerCoordinate.asLocation) { [weak self] placemarks, error in
             guard let self = self else { return }
-            self.searchComplete = true
             
             guard error == nil,
                   let placemark = placemarks?.first else {
-                self.geocodingCompletion?(Result.failure(error!))
+                self.delegate.geocodingComplete(Result.failure(error!))
                 return
             }
-            print("\(placemark)")
-            self.geocodingCompletion?(.success(placemark))
-            
-            if self.showCalloutOnCompletion {
-                self.placemark = placemark
-            }
+            self.delegate.geocodingComplete(.success(placemark))
+            self.placemark = placemark
+            self.searchComplete = true
         }
     }
     
@@ -168,7 +245,6 @@ class PlaceAnnotation:  NSObject, MKAnnotation {
     
     init(placemark: CLPlacemark) {
         coordinate = placemark.location?.coordinate ?? kCLLocationCoordinate2DInvalid
-        title = placemark.formattedAddress
     }
 }
 
@@ -178,7 +254,7 @@ extension CLPlacemark {
             return nil
         }
         let formatter = CNPostalAddressFormatter()
-        return formatter.string(from: postalAddress)
+        return formatter.string(from: postalAddress).replacingOccurrences(of: "\n", with: ", ")
     }
 }
 

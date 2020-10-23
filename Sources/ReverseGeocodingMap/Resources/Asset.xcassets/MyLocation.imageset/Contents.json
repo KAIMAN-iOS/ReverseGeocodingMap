@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "MyLocation.png",
+      "filename" : "location.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "MyLocation@2x.png",
+      "filename" : "location@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "MyLocation@3x.png",
+      "filename" : "location@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
@@ -21,6 +21,6 @@
     "version" : 1
   },
   "properties" : {
-    "template-rendering-intent" : "template"
+    "template-rendering-intent" : "original"
   }
 }

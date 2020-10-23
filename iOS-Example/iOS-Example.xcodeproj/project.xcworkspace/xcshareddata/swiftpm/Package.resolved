@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "ActionButton",
+        "repositoryURL": "https://github.com/jerometonnelier/ActionButton",
+        "state": {
+          "branch": null,
+          "revision": "aab1e02fc35751743c3e94ff6668627c06ba97f7",
+          "version": "1.0.2"
+        }
+      },
+      {
         "package": "HGCircularSlider",
         "repositoryURL": "https://github.com/HamzaGhazouani/HGCircularSlider",
         "state": {
