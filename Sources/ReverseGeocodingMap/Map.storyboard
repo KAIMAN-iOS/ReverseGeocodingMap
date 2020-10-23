@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tid-u3-XWM">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -21,6 +21,34 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ffa-Mb-Wu7">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </mapView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IMq-tA-YbD" customClass="CircularSlider" customModule="HGCircularSlider">
+                                <rect key="frame" x="165" y="406" width="84" height="84"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="lineWidth">
+                                        <real key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="diskFillColor">
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="diskColor">
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="trackFillColor">
+                                        <color key="value" name="Color"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="trackColor">
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="thumbLineWidth">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="thumbRadius">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="stopThumbAtMinMax" value="NO"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="map center" translatesAutoresizingMaskIntoConstraints="NO" id="vF9-BQ-UmY">
                                 <rect key="frame" x="177" y="418" width="60" height="60"/>
                                 <color key="tintColor" name="Color"/>
@@ -29,21 +57,50 @@
                                     <constraint firstAttribute="width" secondItem="vF9-BQ-UmY" secondAttribute="height" multiplier="1:1" id="tpd-IN-1NV"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DSZ-c4-szo">
+                                <rect key="frame" x="350" y="826" width="42" height="42"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.70750297934322037" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="42" id="PfE-4O-kWI"/>
+                                    <constraint firstAttribute="width" secondItem="DSZ-c4-szo" secondAttribute="height" multiplier="1:1" id="s3c-He-V3c"/>
+                                </constraints>
+                                <color key="tintColor" name="Color"/>
+                                <inset key="contentEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                                <state key="normal" image="MyLocation"/>
+                                <connections>
+                                    <action selector="centerOnUser" destination="tid-u3-XWM" eventType="touchUpInside" id="0OL-ns-ded"/>
+                                </connections>
+                            </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="pl8-W7-jwj">
+                                <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
+                                <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="nPc-Ln-Y9c"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="IMq-tA-YbD" firstAttribute="centerX" secondItem="uzC-Jn-jgO" secondAttribute="centerX" id="196-gK-JWH"/>
                             <constraint firstItem="vF9-BQ-UmY" firstAttribute="centerY" secondItem="uzC-Jn-jgO" secondAttribute="centerY" id="8bu-PW-CIL"/>
+                            <constraint firstItem="nPc-Ln-Y9c" firstAttribute="trailing" secondItem="DSZ-c4-szo" secondAttribute="trailing" constant="22" id="Bs3-N9-ODn"/>
+                            <constraint firstItem="pl8-W7-jwj" firstAttribute="centerX" secondItem="vF9-BQ-UmY" secondAttribute="centerX" id="E3W-Wk-YDg"/>
+                            <constraint firstItem="pl8-W7-jwj" firstAttribute="centerY" secondItem="vF9-BQ-UmY" secondAttribute="centerY" id="Fv9-q1-fGa"/>
+                            <constraint firstItem="IMq-tA-YbD" firstAttribute="centerY" secondItem="uzC-Jn-jgO" secondAttribute="centerY" id="NA3-lY-hso"/>
                             <constraint firstItem="ffa-Mb-Wu7" firstAttribute="top" secondItem="uzC-Jn-jgO" secondAttribute="top" id="Phy-Cm-AvW"/>
                             <constraint firstAttribute="bottom" secondItem="ffa-Mb-Wu7" secondAttribute="bottom" id="VGO-j7-EU0"/>
                             <constraint firstItem="vF9-BQ-UmY" firstAttribute="centerX" secondItem="uzC-Jn-jgO" secondAttribute="centerX" id="W91-Mr-tu2"/>
+                            <constraint firstAttribute="bottom" secondItem="DSZ-c4-szo" secondAttribute="bottom" constant="28" id="XPd-aX-pAo"/>
                             <constraint firstItem="ffa-Mb-Wu7" firstAttribute="leading" secondItem="nPc-Ln-Y9c" secondAttribute="leading" id="kW2-nX-B2k"/>
+                            <constraint firstItem="IMq-tA-YbD" firstAttribute="height" secondItem="vF9-BQ-UmY" secondAttribute="height" multiplier="1.4" id="pJV-kr-QVG"/>
                             <constraint firstItem="ffa-Mb-Wu7" firstAttribute="trailing" secondItem="nPc-Ln-Y9c" secondAttribute="trailing" id="s20-dw-z4W"/>
+                            <constraint firstItem="IMq-tA-YbD" firstAttribute="width" secondItem="vF9-BQ-UmY" secondAttribute="width" multiplier="1.4" id="s62-67-vuZ"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="centerImage" destination="vF9-BQ-UmY" id="za7-o9-YX4"/>
+                        <outlet property="countdown" destination="IMq-tA-YbD" id="d0G-jE-CeQ"/>
+                        <outlet property="locatioButton" destination="DSZ-c4-szo" id="TJg-E4-prt"/>
                         <outlet property="map" destination="ffa-Mb-Wu7" id="IwH-IK-RZ7"/>
+                        <outlet property="searchLoader" destination="pl8-W7-jwj" id="RMj-j8-bz4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0ea-sT-Dpp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -52,9 +109,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="MyLocation" width="42" height="42"/>
         <image name="map center" width="100.5" height="100.5"/>
         <namedColor name="Color">
-            <color red="0.78823529410000004" green="0.14117647059999999" blue="0.22352941179999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.78799998760223389" green="0.14100000262260437" blue="0.22400000691413879" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,7 @@
 		C6389EA02541CEAB003ED18F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6389E9E2541CEAB003ED18F /* Main.storyboard */; };
 		C6389EA22541CEAD003ED18F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6389EA12541CEAD003ED18F /* Assets.xcassets */; };
 		C6389EA52541CEAD003ED18F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6389EA32541CEAD003ED18F /* LaunchScreen.storyboard */; };
+		C6389EAF2541CFB8003ED18F /* ReverseGeocodingMap in Frameworks */ = {isa = PBXBuildFile; productRef = C6389EAE2541CFB8003ED18F /* ReverseGeocodingMap */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		C6389EA12541CEAD003ED18F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C6389EA42541CEAD003ED18F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C6389EA62541CEAD003ED18F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C6389EB12541CFBF003ED18F /* ReverseGeocodingMap */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ReverseGeocodingMap; path = ..; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6389EAF2541CFB8003ED18F /* ReverseGeocodingMap in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +43,7 @@
 		C6389E8C2541CEAB003ED18F = {
 			isa = PBXGroup;
 			children = (
+				C6389EB12541CFBF003ED18F /* ReverseGeocodingMap */,
 				C6389E972541CEAB003ED18F /* iOS-Example */,
 				C6389E962541CEAB003ED18F /* Products */,
 			);
@@ -83,6 +87,9 @@
 			dependencies = (
 			);
 			name = "iOS-Example";
+			packageProductDependencies = (
+				C6389EAE2541CFB8003ED18F /* ReverseGeocodingMap */,
+			);
 			productName = "iOS-Example";
 			productReference = C6389E952541CEAB003ED18F /* iOS-Example.app */;
 			productType = "com.apple.product-type.application";
@@ -110,6 +117,9 @@
 				Base,
 			);
 			mainGroup = C6389E8C2541CEAB003ED18F;
+			packageReferences = (
+				C6389EAD2541CFB8003ED18F /* XCRemoteSwiftPackageReference "ReverseGeocodingMap" */,
+			);
 			productRefGroup = C6389E962541CEAB003ED18F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -341,6 +351,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C6389EAD2541CFB8003ED18F /* XCRemoteSwiftPackageReference "ReverseGeocodingMap" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jerometonnelier/ReverseGeocodingMap";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C6389EAE2541CFB8003ED18F /* ReverseGeocodingMap */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C6389EAD2541CFB8003ED18F /* XCRemoteSwiftPackageReference "ReverseGeocodingMap" */;
+			productName = ReverseGeocodingMap;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C6389E8D2541CEAB003ED18F /* Project object */;
 }

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import ReverseGeocodingMap
 
 class ViewController: UIViewController {
 
@@ -14,6 +15,13 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-
+    let map = ReverseGeocodingMap.create()
+    @IBAction func show(_ sender: Any) {
+        map.geocodingCompletion = { res in
+            print("🎃 \(res)")
+        }
+        map.countdownValue = 1
+        navigationController?.pushViewController(map, animated: true)
+    }
 }
 
