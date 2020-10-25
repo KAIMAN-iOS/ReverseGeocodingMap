@@ -100,7 +100,7 @@
                                             <color key="titleColor" name="selectedButtonColor"/>
                                         </state>
                                         <connections>
-                                            <action selector="validatePlacemark" destination="tid-u3-XWM" eventType="touchDragInside" id="n39-IT-Zpe"/>
+                                            <action selector="validatePlacemark" destination="tid-u3-XWM" eventType="touchUpInside" id="S3F-KC-ajx"/>
                                         </connections>
                                     </button>
                                 </subviews>
