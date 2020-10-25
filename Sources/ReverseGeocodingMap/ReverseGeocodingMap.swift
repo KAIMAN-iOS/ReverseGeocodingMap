@@ -97,7 +97,8 @@ public class ReverseGeocodingMap: UIViewController {
     }
     
     @IBAction func validatePlacemark() {
-        
+        guard let placemark = placemark else { return }
+        delegate?.didChoose(placemark)
     }
     
     let locationManager = CLLocationManager()

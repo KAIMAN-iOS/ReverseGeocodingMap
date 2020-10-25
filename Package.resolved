@@ -1,0 +1,61 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "ActionButton",
+        "repositoryURL": "https://github.com/jerometonnelier/ActionButton",
+        "state": {
+          "branch": null,
+          "revision": "aab1e02fc35751743c3e94ff6668627c06ba97f7",
+          "version": "1.0.2"
+        }
+      },
+      {
+        "package": "HGCircularSlider",
+        "repositoryURL": "https://github.com/HamzaGhazouani/HGCircularSlider",
+        "state": {
+          "branch": null,
+          "revision": "2b98462d32bf7211851aa73537dbaba5dd80229e",
+          "version": "2.2.1"
+        }
+      },
+      {
+        "package": "KExtensions",
+        "repositoryURL": "https://github.com/jerometonnelier/KExtensions",
+        "state": {
+          "branch": null,
+          "revision": "43dd9976c8234987382d5c7780fd8c8992caa40a",
+          "version": "1.0.14"
+        }
+      },
+      {
+        "package": "NSAttributedStringBuilder",
+        "repositoryURL": "https://github.com/ethanhuang13/NSAttributedStringBuilder",
+        "state": {
+          "branch": null,
+          "revision": "4a3b02b8b4baf531490e1ddae8ed4a667bdb12b5",
+          "version": "0.3.3"
+        }
+      },
+      {
+        "package": "Nuke",
+        "repositoryURL": "https://github.com/kean/Nuke",
+        "state": {
+          "branch": null,
+          "revision": "a2a56211cd80614e1ac90bf2e76c5329f4f6b3d0",
+          "version": "9.1.2"
+        }
+      },
+      {
+        "package": "SnapKit",
+        "repositoryURL": "https://github.com/SnapKit/SnapKit",
+        "state": {
+          "branch": null,
+          "revision": "d458564516e5676af9c70b4f4b2a9178294f1bc6",
+          "version": "5.0.1"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
