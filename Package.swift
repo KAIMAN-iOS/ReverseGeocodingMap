@@ -25,8 +25,5 @@ let package = Package(
         .target(
             name: "ReverseGeocodingMap",
             dependencies: ["HGCircularSlider", "KExtensions", "ActionButton"]),
-        .testTarget(
-            name: "ReverseGeocodingMapTests",
-            dependencies: ["ReverseGeocodingMap"]),
     ]
 )

@@ -16,12 +16,14 @@ public protocol ReverseGeocodingMapDelegate: class {
 }
 
 public class ReverseGeocodingMap: UIViewController {
-    public static func create(delegate: ReverseGeocodingMapDelegate) -> ReverseGeocodingMap {
+    public static func create(delegate: ReverseGeocodingMapDelegate, centerCoordinates: CLLocationCoordinate2D? = nil) -> ReverseGeocodingMap {
         let ctrl = UIStoryboard(name: "Map", bundle: .module).instantiateInitialViewController() as! ReverseGeocodingMap
         ctrl.delegate = delegate
+        ctrl.centerCoordinates = centerCoordinates
         return ctrl
     }
     weak var delegate: ReverseGeocodingMapDelegate!
+    var centerCoordinates: CLLocationCoordinate2D?
     
     @IBOutlet weak var map: MKMapView!  {
         didSet {
@@ -123,6 +125,10 @@ public class ReverseGeocodingMap: UIViewController {
         checkAuthorization()
         handleSearch()
         customize()
+        
+        if let coord = centerCoordinates {
+            map.centerCoordinate = coord
+        }
         
         countdown.isHidden = true
         locatioButton.tintColor = tintColor
