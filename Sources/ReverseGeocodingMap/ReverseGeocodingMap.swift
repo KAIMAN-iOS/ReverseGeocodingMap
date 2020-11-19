@@ -8,6 +8,7 @@ import UIViewExtension
 import LabelExtension
 import FontExtension
 import ActionButton
+import ATAConfiguration
 
 public protocol ReverseGeocodingMapDelegate: class {
     func geocodingComplete(_: Result<CLPlacemark, Error>)
@@ -16,10 +17,12 @@ public protocol ReverseGeocodingMapDelegate: class {
 }
 
 public class ReverseGeocodingMap: UIViewController {
-    public static func create(delegate: ReverseGeocodingMapDelegate, centerCoordinates: CLLocationCoordinate2D? = nil) -> ReverseGeocodingMap {
+    static var configuration: ATAConfiguration!
+    public static func create(delegate: ReverseGeocodingMapDelegate, centerCoordinates: CLLocationCoordinate2D? = nil, conf: ATAConfiguration) -> ReverseGeocodingMap {
         let ctrl = UIStoryboard(name: "Map", bundle: .module).instantiateInitialViewController() as! ReverseGeocodingMap
         ctrl.delegate = delegate
         ctrl.centerCoordinates = centerCoordinates
+        ReverseGeocodingMap.configuration = conf
         return ctrl
     }
     weak var delegate: ReverseGeocodingMapDelegate!
@@ -72,7 +75,7 @@ public class ReverseGeocodingMap: UIViewController {
         }
     }
 
-    public var tintColor: UIColor = #colorLiteral(red: 0.8602173328, green: 0, blue: 0.1972838044, alpha: 1)  {
+    public var tintColor: UIColor = ReverseGeocodingMap.configuration.palette.primary  {
         didSet {
             guard locatioButton != nil else { return }
             locatioButton.tintColor = tintColor
@@ -137,10 +140,10 @@ public class ReverseGeocodingMap: UIViewController {
     }
     
     func customize() {
-        ActionButton.primaryColor = #colorLiteral(red: 1, green: 0.192286253, blue: 0.2298730612, alpha: 1)
-        ActionButton.loadingColor = #colorLiteral(red: 1, green: 0.192286253, blue: 0.2298730612, alpha: 1).withAlphaComponent(0.7)
-        ActionButton.separatorColor = #colorLiteral(red: 0.6176490188, green: 0.6521512866, blue: 0.7114837766, alpha: 1)
-        ActionButton.mainTextsColor = #colorLiteral(red: 0.1234303191, green: 0.1703599989, blue: 0.2791167498, alpha: 1)
+        ActionButton.primaryColor = ReverseGeocodingMap.configuration.palette.primary
+        ActionButton.loadingColor = ReverseGeocodingMap.configuration.palette.primary.withAlphaComponent(0.7)
+        ActionButton.separatorColor = ReverseGeocodingMap.configuration.palette.inactive
+        ActionButton.mainTextsColor = ReverseGeocodingMap.configuration.palette.mainTexts
     }
     
     func handleSearch() {
@@ -215,10 +218,10 @@ public class ReverseGeocodingMap: UIViewController {
             validDestinationButton.isEnabled = placemark?.formattedAddress?.isEmpty ?? true == false
             guard let place = placemark,
                   place.formattedAddress?.isEmpty ?? true == false  else {
-                validDestinationLabel.set(text: NSLocalizedString("Enter valid destination", bundle: .module, comment: "Choose destination"), for: FontType.footnote, textColor: #colorLiteral(red: 0.1234303191, green: 0.1703599989, blue: 0.2791167498, alpha: 1))
+                validDestinationLabel.set(text: NSLocalizedString("Enter valid destination", bundle: .module, comment: "Choose destination"), for: FontType.footnote, textColor: ReverseGeocodingMap.configuration.palette.mainTexts)
                 return
             }
-            validDestinationLabel.set(text: place.formattedAddress, for: FontType.footnote, textColor: #colorLiteral(red: 0.1234303191, green: 0.1703599989, blue: 0.2791167498, alpha: 1))
+            validDestinationLabel.set(text: place.formattedAddress, for: FontType.footnote, textColor: ReverseGeocodingMap.configuration.palette.mainTexts)
         }
     }
 
