@@ -6,8 +6,26 @@
         "repositoryURL": "https://github.com/jerometonnelier/ActionButton",
         "state": {
           "branch": null,
-          "revision": "aab1e02fc35751743c3e94ff6668627c06ba97f7",
-          "version": "1.0.2"
+          "revision": "3ae3d2b60324051f8ee9cb0ab63feb5866ef454c",
+          "version": "1.0.3"
+        }
+      },
+      {
+        "package": "Ampersand",
+        "repositoryURL": "https://github.com/darjeelingsteve/Ampersand",
+        "state": {
+          "branch": null,
+          "revision": "9498afe66ef14428c80647a4b1046c9aab97655a",
+          "version": "1.1.0"
+        }
+      },
+      {
+        "package": "ATAConfiguration",
+        "repositoryURL": "https://github.com/jerometonnelier/ATAConfiguration",
+        "state": {
+          "branch": null,
+          "revision": "8ec9be62f1f5783ce0acb71ff1cb885ca8265df2",
+          "version": "1.0.3"
         }
       },
       {
@@ -24,8 +42,8 @@
         "repositoryURL": "https://github.com/jerometonnelier/KExtensions",
         "state": {
           "branch": null,
-          "revision": "43dd9976c8234987382d5c7780fd8c8992caa40a",
-          "version": "1.0.14"
+          "revision": "8e29ed4a1b0ee56f1bd7f858acb1b88bd7d5c810",
+          "version": "1.0.20"
         }
       },
       {
@@ -42,8 +60,8 @@
         "repositoryURL": "https://github.com/kean/Nuke",
         "state": {
           "branch": null,
-          "revision": "a2a56211cd80614e1ac90bf2e76c5329f4f6b3d0",
-          "version": "9.1.2"
+          "revision": "ef122e4512e84020dca9d8f598408fdb38658946",
+          "version": "9.2.0"
         }
       },
       {

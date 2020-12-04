@@ -19,10 +19,10 @@ public protocol ReverseGeocodingMapDelegate: class {
 public class ReverseGeocodingMap: UIViewController {
     static var configuration: ATAConfiguration!
     public static func create(delegate: ReverseGeocodingMapDelegate, centerCoordinates: CLLocationCoordinate2D? = nil, conf: ATAConfiguration) -> ReverseGeocodingMap {
+        ReverseGeocodingMap.configuration = conf
         let ctrl = UIStoryboard(name: "Map", bundle: .module).instantiateInitialViewController() as! ReverseGeocodingMap
         ctrl.delegate = delegate
         ctrl.centerCoordinates = centerCoordinates
-        ReverseGeocodingMap.configuration = conf
         return ctrl
     }
     weak var delegate: ReverseGeocodingMapDelegate!
@@ -56,13 +56,13 @@ public class ReverseGeocodingMap: UIViewController {
 
     @IBOutlet weak var chooseDestinationLabel: UILabel!  {
         didSet {
-            chooseDestinationLabel.set(text: NSLocalizedString("Choose destination", bundle: .module, comment: "Choose destination"), for: FontType.title, textColor: #colorLiteral(red: 0.1234303191, green: 0.1703599989, blue: 0.2791167498, alpha: 1))
+            chooseDestinationLabel.set(text: NSLocalizedString("Choose destination", bundle: .module, comment: "Choose destination"), for: .title2, textColor: #colorLiteral(red: 0.1234303191, green: 0.1703599989, blue: 0.2791167498, alpha: 1))
         }
     }
 
     @IBOutlet weak var validDestinationLabel: UILabel! {
         didSet {
-            validDestinationLabel.set(text: NSLocalizedString("Enter valid destination", bundle: .module, comment: "Choose destination"), for: FontType.footnote, textColor: #colorLiteral(red: 0.1234303191, green: 0.1703599989, blue: 0.2791167498, alpha: 1))
+            validDestinationLabel.set(text: NSLocalizedString("Enter valid destination", bundle: .module, comment: "Choose destination"), for: .footnote, textColor: #colorLiteral(red: 0.1234303191, green: 0.1703599989, blue: 0.2791167498, alpha: 1))
         }
     }
 
@@ -218,10 +218,10 @@ public class ReverseGeocodingMap: UIViewController {
             validDestinationButton.isEnabled = placemark?.formattedAddress?.isEmpty ?? true == false
             guard let place = placemark,
                   place.formattedAddress?.isEmpty ?? true == false  else {
-                validDestinationLabel.set(text: NSLocalizedString("Enter valid destination", bundle: .module, comment: "Choose destination"), for: FontType.footnote, textColor: ReverseGeocodingMap.configuration.palette.mainTexts)
+                validDestinationLabel.set(text: NSLocalizedString("Enter valid destination", bundle: .module, comment: "Choose destination"), for: .footnote, textColor: ReverseGeocodingMap.configuration.palette.mainTexts)
                 return
             }
-            validDestinationLabel.set(text: place.formattedAddress, for: FontType.footnote, textColor: ReverseGeocodingMap.configuration.palette.mainTexts)
+            validDestinationLabel.set(text: place.formattedAddress, for: .footnote, textColor: ReverseGeocodingMap.configuration.palette.mainTexts)
         }
     }
 
