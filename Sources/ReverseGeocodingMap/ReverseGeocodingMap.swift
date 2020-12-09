@@ -140,10 +140,6 @@ public class ReverseGeocodingMap: UIViewController {
     }
     
     func customize() {
-        ActionButton.primaryColor = ReverseGeocodingMap.configuration.palette.primary
-        ActionButton.loadingColor = ReverseGeocodingMap.configuration.palette.primary.withAlphaComponent(0.7)
-        ActionButton.separatorColor = ReverseGeocodingMap.configuration.palette.inactive
-        ActionButton.mainTextsColor = ReverseGeocodingMap.configuration.palette.mainTexts
     }
     
     func handleSearch() {
