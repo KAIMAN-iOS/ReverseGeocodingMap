@@ -26,7 +26,13 @@ public class ReverseGeocodingMap: UIViewController {
         return ctrl
     }
     weak var delegate: ReverseGeocodingMapDelegate!
-    var centerCoordinates: CLLocationCoordinate2D?
+    public var centerCoordinates: CLLocationCoordinate2D?  {
+        didSet {
+            guard let coord = centerCoordinates, map != nil else { return }
+            map.setCenter(coord, animated: false)
+        }
+    }
+
     
     @IBOutlet weak var map: MKMapView!  {
         didSet {
@@ -56,22 +62,20 @@ public class ReverseGeocodingMap: UIViewController {
 
     @IBOutlet weak var chooseDestinationLabel: UILabel!  {
         didSet {
-            chooseDestinationLabel.set(text: NSLocalizedString("Choose destination", bundle: .module, comment: "Choose destination"), for: .title2, textColor: #colorLiteral(red: 0.1234303191, green: 0.1703599989, blue: 0.2791167498, alpha: 1))
+            chooseDestinationLabel.set(text: NSLocalizedString("Choose destination", bundle: .module, comment: "Choose destination"), for: .title3, textColor: #colorLiteral(red: 0.1234303191, green: 0.1703599989, blue: 0.2791167498, alpha: 1))
         }
     }
 
     @IBOutlet weak var validDestinationLabel: UILabel! {
         didSet {
-            validDestinationLabel.set(text: NSLocalizedString("Enter valid destination", bundle: .module, comment: "Choose destination"), for: .footnote, textColor: #colorLiteral(red: 0.1234303191, green: 0.1703599989, blue: 0.2791167498, alpha: 1))
+            validDestinationLabel.set(text: NSLocalizedString("Enter valid destination", bundle: .module, comment: "Choose destination"), for: .body, textColor: #colorLiteral(red: 0.1234303191, green: 0.1703599989, blue: 0.2791167498, alpha: 1))
         }
     }
 
     @IBOutlet weak var validDestinationButton: ActionButton!  {
         didSet {
             validDestinationButton.actionButtonType = .primary
-            validDestinationButton.layer.cornerRadius = 5.0
             validDestinationButton.setTitle(NSLocalizedString("set destination", bundle: .module, comment: "set destination").uppercased(), for: .normal)
-            validDestinationButton.shape = .rounded(value: 5.0)
         }
     }
 
@@ -214,10 +218,12 @@ public class ReverseGeocodingMap: UIViewController {
             validDestinationButton.isEnabled = placemark?.formattedAddress?.isEmpty ?? true == false
             guard let place = placemark,
                   place.formattedAddress?.isEmpty ?? true == false  else {
-                validDestinationLabel.set(text: NSLocalizedString("Enter valid destination", bundle: .module, comment: "Choose destination"), for: .footnote, textColor: ReverseGeocodingMap.configuration.palette.mainTexts)
+                validDestinationLabel.set(text: NSLocalizedString("Enter valid destination", bundle: .module, comment: "Choose destination"),
+                                          for: .body,
+                                          textColor: ReverseGeocodingMap.configuration.palette.mainTexts)
                 return
             }
-            validDestinationLabel.set(text: place.formattedAddress, for: .footnote, textColor: ReverseGeocodingMap.configuration.palette.mainTexts)
+            validDestinationLabel.set(text: place.formattedAddress, for: .body, fontScale: 0.8, textColor: ReverseGeocodingMap.configuration.palette.secondaryTexts)
         }
     }
 

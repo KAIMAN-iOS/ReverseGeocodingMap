@@ -1,0 +1,97 @@
+{
+  "styles": [
+    {
+      "textStyle": "UICTFontTextStyleTitle0",
+      "fontName": "Poppins-Bold",
+      "pointSize": 38
+    },
+    {
+      "textStyle": "UICTFontTextStyleTitle1",
+      "fontName": "Poppins-SemiBold",
+      "pointSize": 30
+    },
+    {
+      "textStyle": "UICTFontTextStyleTitle2",
+      "fontName": "Poppins-Medium",
+      "pointSize": 24
+    },
+    {
+      "textStyle": "UICTFontTextStyleTitle3",
+      "fontName": "Poppins-Regular",
+      "pointSize": 22
+    },
+    {
+      "textStyle": "UICTFontTextStyleHeadline",
+      "fontName": "Poppins-Medium",
+      "pointSize": 19
+    },
+    {
+      "textStyle": "UICTFontTextStyleSubhead",
+      "fontName": "Poppins-Regular",
+      "pointSize": 17
+    },
+    {
+      "textStyle": "UICTFontTextStyleBody",
+      "fontName": "Poppins-Regular",
+      "pointSize": 16
+    },
+    {
+      "textStyle": "UICTFontTextStyleCallout",
+      "fontName": "Poppins-SemiBold",
+      "pointSize": 17
+    },
+    {
+      "textStyle": "UICTFontTextStyleFootnote",
+      "fontName": "Poppins-Thin",
+      "pointSize": 15
+    },
+    {
+      "textStyle": "UICTFontTextStyleCaption1",
+      "fontName": "Poppins-ExtraLight",
+      "pointSize": 14
+    },
+    {
+      "textStyle": "UICTFontTextStyleCaption2",
+      "fontName": "Poppins-ExtraLight",
+      "pointSize": 12
+    }
+  ],
+  "weights": [
+    {
+      "fontWeight": "ultraLight",
+      "fontName": "Poppins-ExtraLight"
+    },
+    {
+      "fontWeight": "thin",
+      "fontName": "Poppins-Thin"
+    },
+    {
+      "fontWeight": "light",
+      "fontName": "Poppins-Light"
+    },
+    {
+      "fontWeight": "regular",
+      "fontName": "Poppins-Regular"
+    },
+    {
+      "fontWeight": "medium",
+      "fontName": "Poppins-Medium"
+    },
+    {
+      "fontWeight": "semibold",
+      "fontName": "Poppins-Medium"
+    },
+    {
+      "fontWeight": "bold",
+      "fontName": "Poppins-Bold"
+    },
+    {
+      "fontWeight": "heavy",
+      "fontName": "Poppins-Bold"
+    },
+    {
+      "fontWeight": "black",
+      "fontName": "Poppins-Bold"
+    }
+  ]
+}
