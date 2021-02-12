@@ -17,6 +17,13 @@ public protocol ReverseGeocodingMapDelegate: class {
 }
 
 public class ReverseGeocodingMap: UIViewController {
+    public var placemarkIcon: UIImage = UIImage(named: "map center", in: .module, compatibleWith: nil)!  {
+        didSet {
+            guard centerImage != nil else { return }
+            centerImage.image = placemarkIcon
+        }
+    }
+
     static var configuration: ATAConfiguration!
     public static func create(delegate: ReverseGeocodingMapDelegate, centerCoordinates: CLLocationCoordinate2D? = nil, conf: ATAConfiguration) -> ReverseGeocodingMap {
         ReverseGeocodingMap.configuration = conf
@@ -32,8 +39,6 @@ public class ReverseGeocodingMap: UIViewController {
             map.setCenter(coord, animated: false)
         }
     }
-
-    
     @IBOutlet weak var map: MKMapView!  {
         didSet {
             map.delegate = self
@@ -44,7 +49,6 @@ public class ReverseGeocodingMap: UIViewController {
             centerImage.isUserInteractionEnabled = false
         }
     }
-
     @IBOutlet weak var searchLoader: UIActivityIndicatorView!
     @IBOutlet weak var locatioButton: UIButton!  {
         didSet {
@@ -59,19 +63,16 @@ public class ReverseGeocodingMap: UIViewController {
         }
     }
     @IBOutlet weak var card: UIView!
-
     @IBOutlet weak var chooseDestinationLabel: UILabel!  {
         didSet {
             chooseDestinationLabel.set(text: NSLocalizedString("Choose destination", bundle: .module, comment: "Choose destination"), for: .title3, textColor: #colorLiteral(red: 0.1234303191, green: 0.1703599989, blue: 0.2791167498, alpha: 1))
         }
     }
-
     @IBOutlet weak var validDestinationLabel: UILabel! {
         didSet {
             validDestinationLabel.set(text: NSLocalizedString("Enter valid destination", bundle: .module, comment: "Choose destination"), for: .body, textColor: #colorLiteral(red: 0.1234303191, green: 0.1703599989, blue: 0.2791167498, alpha: 1))
         }
     }
-
     @IBOutlet weak var validDestinationButton: ActionButton!  {
         didSet {
             validDestinationButton.actionButtonType = .primary
@@ -129,6 +130,7 @@ public class ReverseGeocodingMap: UIViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
+        centerImage.image = placemarkIcon
         checkAuthorization()
         handleSearch()
         customize()
@@ -215,7 +217,7 @@ public class ReverseGeocodingMap: UIViewController {
 
     var placemark: CLPlacemark?  {
         didSet {
-            validDestinationButton.isEnabled = placemark?.formattedAddress?.isEmpty ?? true == false
+            validDestinationButton.isEnabled = placemark?.inlandWater?.isEmpty ?? true == true && placemark?.ocean?.isEmpty ?? true == true
             guard let place = placemark,
                   place.formattedAddress?.isEmpty ?? true == false  else {
                 validDestinationLabel.set(text: NSLocalizedString("Enter valid destination", bundle: .module, comment: "Choose destination"),
