@@ -5,9 +5,18 @@
         "package": "ActionButton",
         "repositoryURL": "https://github.com/jerometonnelier/ActionButton",
         "state": {
+          "branch": "master",
+          "revision": "54fa3a54c2935e6562a2467d245ab65d7518bccc",
+          "version": null
+        }
+      },
+      {
+        "package": "Alamofire",
+        "repositoryURL": "https://github.com/Alamofire/Alamofire",
+        "state": {
           "branch": null,
-          "revision": "3ae3d2b60324051f8ee9cb0ab63feb5866ef454c",
-          "version": "1.0.3"
+          "revision": "4d19ad82f80cc71ff829b941ded114c56f4f604c",
+          "version": "5.4.2"
         }
       },
       {
@@ -23,9 +32,18 @@
         "package": "ATAConfiguration",
         "repositoryURL": "https://github.com/jerometonnelier/ATAConfiguration",
         "state": {
-          "branch": null,
-          "revision": "8ec9be62f1f5783ce0acb71ff1cb885ca8265df2",
-          "version": "1.0.3"
+          "branch": "master",
+          "revision": "d4b2dbcc96550102fd5222bbfeebf62a6d72e60d",
+          "version": null
+        }
+      },
+      {
+        "package": "Haptica",
+        "repositoryURL": "https://github.com/efremidze/Haptica",
+        "state": {
+          "branch": "master",
+          "revision": "4084702c85102c2d17d58e42ec5a750094944864",
+          "version": null
         }
       },
       {
@@ -41,9 +59,18 @@
         "package": "KExtensions",
         "repositoryURL": "https://github.com/jerometonnelier/KExtensions",
         "state": {
+          "branch": "master",
+          "revision": "da55b7dc677e69f9decf078a682b0f2a002e4464",
+          "version": null
+        }
+      },
+      {
+        "package": "KStorage",
+        "repositoryURL": "https://github.com/jerometonnelier/KStorage",
+        "state": {
           "branch": null,
-          "revision": "8e29ed4a1b0ee56f1bd7f858acb1b88bd7d5c810",
-          "version": "1.0.20"
+          "revision": "330de84d7b9601468a842c099c7627069ab92016",
+          "version": "1.0.0"
         }
       },
       {
@@ -60,8 +87,26 @@
         "repositoryURL": "https://github.com/kean/Nuke",
         "state": {
           "branch": null,
-          "revision": "ef122e4512e84020dca9d8f598408fdb38658946",
-          "version": "9.2.0"
+          "revision": "200016df418ed8dc70ba918d52c29634f434541c",
+          "version": "9.5.0"
+        }
+      },
+      {
+        "package": "Peep",
+        "repositoryURL": "https://github.com/efremidze/Peep",
+        "state": {
+          "branch": null,
+          "revision": "6ba6217b6fa53d53e635f20ed225261398b32116",
+          "version": "3.0.0"
+        }
+      },
+      {
+        "package": "PromiseKit",
+        "repositoryURL": "https://github.com/mxcl/PromiseKit",
+        "state": {
+          "branch": null,
+          "revision": "aea48ea1855f5d82e2dffa6027afce3aab8f3dd7",
+          "version": "6.13.3"
         }
       },
       {
