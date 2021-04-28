@@ -9,6 +9,7 @@ import LabelExtension
 import FontExtension
 import ActionButton
 import ATAConfiguration
+import SwiftLocation
 
 public protocol ReverseGeocodingMapDelegate: class {
     func geocodingComplete(_: Result<CLPlacemark, Error>)
@@ -49,17 +50,16 @@ public class ReverseGeocodingMap: UIViewController {
             centerImage.isUserInteractionEnabled = false
         }
     }
-    @IBOutlet weak var searchLoader: UIActivityIndicatorView!
-    @IBOutlet weak var locatioButton: UIButton!  {
+    @IBOutlet weak var searchLoader: UIActivityIndicatorView!  {
         didSet {
-            locatioButton.layer.cornerRadius = 5.0
+            searchLoader.isHidden = true
         }
     }
-    @IBOutlet weak var countdown: CircularSlider!  {
+
+    @IBOutlet weak var locatioButton: UIButton!  {
         didSet {
-            countdown.minimumValue = 0.0
-            countdown.maximumValue = 1.0
-            countdown.isUserInteractionEnabled = false
+            locatioButton.backgroundColor = ReverseGeocodingMap.configuration.palette.background
+            locatioButton.addShadow()
         }
     }
     @IBOutlet weak var card: UIView!
@@ -93,17 +93,11 @@ public class ReverseGeocodingMap: UIViewController {
         }
     }
     public var showCalloutOnCompletion: Bool = true
-    public var showProgressView: Bool = true  {
-        didSet {
-            guard countdown != nil else { return }
-            countdown.isHidden = showProgressView == false
-        }
-    }
     public var countdownValue: CGFloat = 2
     public var showSearchButton: Bool = true
     
     @IBAction func centerOnUser() {
-        map.setCenter(map.userLocation.coordinate, animated: true)
+        zoomOnUser()
     }
     
     @IBAction func validatePlacemark() {
@@ -139,10 +133,16 @@ public class ReverseGeocodingMap: UIViewController {
             map.centerCoordinate = coord
         }
         
-        countdown.isHidden = true
         locatioButton.tintColor = tintColor
         centerImage.tintColor = tintColor
-        countdown.trackFillColor = tintColor
+    }
+    
+    internal func zoomOnUser(location: CLLocationCoordinate2D? = nil) {
+        guard CLLocationManager.authorizationStatus() == .authorizedWhenInUse else { return }
+        let coordinates = location ?? (SwiftLocation.lastKnownGPSLocation?.coordinate ?? map.userLocation.coordinate)
+        if CLLocationCoordinate2DIsValid(coordinates) {
+            map.setRegion(MKCoordinateRegion(center: coordinates, span: MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02)), animated: true)
+        }
     }
     
     func customize() {
@@ -159,62 +159,16 @@ public class ReverseGeocodingMap: UIViewController {
         delegate.search()
     }
     
-    var countdownTimer: Timer?
-    private func loadTimer() {
-        let timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { [weak self] timer in
-            guard self?.countdown.endPointValue ?? 0 < 1 else {
-                timer.invalidate()
-                if self?.searchComplete ?? true == false {
-                    self?.searchLoader.isHidden = false
-                }
-                guard let placemark = self?.placemark else { return }
-                self?.countdown.isHidden = true
-                self?.centerImage.isHidden = true
-                if self?.showCalloutOnCompletion ?? false == true {
-                    self?.showAnnotation(placemark)
-                }
-                if placemark.name?.isEmpty ?? true == false {
-                    
-                } else {
-                    
-                }
-                
-                return
-            }
-            self?.countdown.endPointValue += 0.01 / (self?.countdownValue ?? 1)
-        }
-        RunLoop.main.add(timer, forMode: .default)
-        countdownTimer = timer
-    }
-    
-    
     deinit {
         print("💀 DEINIT \(URL(fileURLWithPath: #file).lastPathComponent)")
-        countdownTimer?.invalidate()
     }
     
     private func startCountdown() {
-        guard showProgressView == true else { return }
-        countdown.isHidden = false
-        countdown.endPointValue = 0
-        loadTimer()
         searchAddressForCurrentLocation()
     }
     
-    func stopTimer(hideProgress: Bool = true) {
-        countdownTimer?.invalidate()
-        countdownTimer = nil
-        countdown.isHidden = hideProgress
-        searchLoader.isHidden = true
-    }
-    
     let geocoder = CLGeocoder()
-    var searchComplete: Bool = false  {
-        didSet {
-            stopTimer()
-        }
-    }
-
+    var searchComplete: Bool = false
     var placemark: CLPlacemark?  {
         didSet {
             validDestinationButton.isEnabled = placemark?.inlandWater?.isEmpty ?? true == true && placemark?.ocean?.isEmpty ?? true == true
@@ -276,11 +230,10 @@ extension ReverseGeocodingMap: CLLocationManagerDelegate {
     public func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         switch CLLocationManager.authorizationStatus() {
         case .authorizedWhenInUse, .authorizedAlways:
-            map.showsUserLocation = true
+            zoomOnUser()
             locatioButton.isHidden = false
             
         default:
-            map.showsUserLocation = false
             locatioButton.isHidden = true
         }
     }
@@ -288,7 +241,6 @@ extension ReverseGeocodingMap: CLLocationManagerDelegate {
 
 extension ReverseGeocodingMap: MKMapViewDelegate {
     public func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
-        stopTimer()
         centerImage.isHidden = false
         map.removeAnnotations(map.annotations)
         geocoder.cancelGeocode()
