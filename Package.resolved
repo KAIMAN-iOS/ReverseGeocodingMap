@@ -3,10 +3,10 @@
     "pins": [
       {
         "package": "ActionButton",
-        "repositoryURL": "https://github.com/jerometonnelier/ActionButton",
+        "repositoryURL": "https://github.com/KAIMAN-IOS/ActionButton",
         "state": {
           "branch": "master",
-          "revision": "54fa3a54c2935e6562a2467d245ab65d7518bccc",
+          "revision": "5a8f4d4969719e1f32758af9f61777562ba262e7",
           "version": null
         }
       },
@@ -15,8 +15,8 @@
         "repositoryURL": "https://github.com/Alamofire/Alamofire",
         "state": {
           "branch": null,
-          "revision": "4d19ad82f80cc71ff829b941ded114c56f4f604c",
-          "version": "5.4.2"
+          "revision": "f96b619bcb2383b43d898402283924b80e2c4bae",
+          "version": "5.4.3"
         }
       },
       {
@@ -30,10 +30,10 @@
       },
       {
         "package": "ATAConfiguration",
-        "repositoryURL": "https://github.com/jerometonnelier/ATAConfiguration",
+        "repositoryURL": "https://github.com/KAIMAN-IOS/ATAConfiguration",
         "state": {
           "branch": "master",
-          "revision": "d4b2dbcc96550102fd5222bbfeebf62a6d72e60d",
+          "revision": "bee5d53f06f15f9a7c036bc7ed29e504eb230c35",
           "version": null
         }
       },
@@ -57,16 +57,16 @@
       },
       {
         "package": "KExtensions",
-        "repositoryURL": "https://github.com/jerometonnelier/KExtensions",
+        "repositoryURL": "https://github.com/KAIMAN-IOS/KExtensions",
         "state": {
           "branch": "master",
-          "revision": "da55b7dc677e69f9decf078a682b0f2a002e4464",
+          "revision": "629b5a7cc44c0d37e0b96db01371cc87965f57c2",
           "version": null
         }
       },
       {
         "package": "KStorage",
-        "repositoryURL": "https://github.com/jerometonnelier/KStorage",
+        "repositoryURL": "https://github.com/KAIMAN-iOS/KStorage",
         "state": {
           "branch": null,
           "revision": "330de84d7b9601468a842c099c7627069ab92016",
@@ -78,8 +78,8 @@
         "repositoryURL": "https://github.com/ethanhuang13/NSAttributedStringBuilder",
         "state": {
           "branch": null,
-          "revision": "4a3b02b8b4baf531490e1ddae8ed4a667bdb12b5",
-          "version": "0.3.3"
+          "revision": "18662b33975c9ec8c80a1bd9b4e30d09612ee7ee",
+          "version": "0.4.1"
         }
       },
       {
@@ -87,8 +87,8 @@
         "repositoryURL": "https://github.com/kean/Nuke",
         "state": {
           "branch": null,
-          "revision": "200016df418ed8dc70ba918d52c29634f434541c",
-          "version": "9.5.0"
+          "revision": "7f73ceaeacd5df75a7994cd82e165ad9ff1815db",
+          "version": "9.6.1"
         }
       },
       {
@@ -105,8 +105,8 @@
         "repositoryURL": "https://github.com/mxcl/PromiseKit",
         "state": {
           "branch": null,
-          "revision": "aea48ea1855f5d82e2dffa6027afce3aab8f3dd7",
-          "version": "6.13.3"
+          "revision": "d2f7ba14bcdc45e18f4f60ad9df883fb9055f081",
+          "version": "6.15.3"
         }
       },
       {
@@ -116,6 +116,15 @@
           "branch": null,
           "revision": "d458564516e5676af9c70b4f4b2a9178294f1bc6",
           "version": "5.0.1"
+        }
+      },
+      {
+        "package": "SwiftLocation",
+        "repositoryURL": "https://github.com/malcommac/SwiftLocation",
+        "state": {
+          "branch": null,
+          "revision": "f8ec8e97095eb3a5312370ad94b921768217625f",
+          "version": "5.1.0"
         }
       }
     ]

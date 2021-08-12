@@ -16,9 +16,9 @@ let package = Package(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
          .package(url: "https://github.com/HamzaGhazouani/HGCircularSlider", from: "2.2.1"),
-        .package(url: "https://github.com/jerometonnelier/KExtensions", .branch("master")),
-        .package(url: "https://github.com/jerometonnelier/ActionButton", .branch("master")),
-        .package(url: "https://github.com/jerometonnelier/ATAConfiguration", .branch("master")),
+        .package(url: "https://github.com/KAIMAN-IOS/KExtensions", .branch("master")),
+        .package(url: "https://github.com/KAIMAN-IOS/ActionButton", .branch("master")),
+        .package(url: "https://github.com/KAIMAN-IOS/ATAConfiguration", .branch("master")),
         .package(url: "https://github.com/malcommac/SwiftLocation", from: "5.1.0"),
     ],
     targets: [
