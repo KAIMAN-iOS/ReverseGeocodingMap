@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tid-u3-XWM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tid-u3-XWM">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -91,7 +91,7 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="nPc-Ln-Y9c"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="iAv-2a-1eq" firstAttribute="top" secondItem="ffa-Mb-Wu7" secondAttribute="bottom" constant="-12" id="1Ap-3B-dCL"/>
                             <constraint firstItem="nPc-Ln-Y9c" firstAttribute="trailing" secondItem="DSZ-c4-szo" secondAttribute="trailing" constant="22" id="Bs3-N9-ODn"/>
@@ -124,11 +124,6 @@
             <point key="canvasLocation" x="228.98550724637684" y="207.58928571428569"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="oAf-VF-v9O">
-            <size key="intrinsicContentSize" width="66" height="48"/>
-        </designable>
-    </designables>
     <resources>
         <image name="MyLocation" width="119" height="119"/>
         <image name="map center" width="42" height="42"/>

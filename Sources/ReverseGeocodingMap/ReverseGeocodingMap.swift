@@ -62,7 +62,11 @@ public class ReverseGeocodingMap: UIViewController {
             locatioButton.addShadow()
         }
     }
-    @IBOutlet weak var card: UIView!
+    @IBOutlet weak var card: UIView! {
+        didSet {
+            card.backgroundColor = ReverseGeocodingMap.configuration.palette.background
+        }
+    }
     @IBOutlet weak var chooseDestinationLabel: UILabel!  {
         didSet {
             chooseDestinationLabel.set(text: NSLocalizedString("Choose destination", bundle: .module, comment: "Choose destination"), for: .title3, textColor: #colorLiteral(red: 0.1234303191, green: 0.1703599989, blue: 0.2791167498, alpha: 1))
